@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 import environ
+import urllib.parse as up
+import psycopg2
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -95,16 +97,33 @@ WSGI_APPLICATION = 'songs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# up.uses_netloc.append("postgres")
+# url = up.urlparse(
+#     os.environ["postgres://isnntsdr:j49ennnJb1xqPykMk_SG0fiurFOaC7q-@raja.db.elephantsql.com:5432/isnntsdr"])
+# # url = up.urlparse(os.environ[env.str("URL")])
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env.str('DATABASE_NAME'),
-        'USER': env.str('DATABASE_USER'),
-        'PASSWORD': env.str('DATABASE_PASSWORD'),
-        'HOST': env.str('DATABASE_HOST'),
-        'PORT': env.int('DATABASE_PORT'),
+        'NAME': 'isnntsdr',
+        'USER': 'isnntsdr',
+        'PASSWORD': 'j49ennnJb1xqPykMk_SG0fiurFOaC7q-',
+        'HOST': 'raja.db.elephantsql.com',
+        'PORT': 5432,
     }
 }
+
+
+# DATABASES={
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env.str('DATABASE_NAME'),
+#         'USER': env.str('DATABASE_USER'),
+#         'PASSWORD': env.str('DATABASE_PASSWORD'),
+#         'HOST': env.str('DATABASE_HOST'),
+#         'PORT': env.int('DATABASE_PORT'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -160,5 +179,5 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
+    "http://localhost:8001",
 ]
