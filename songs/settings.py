@@ -97,23 +97,21 @@ WSGI_APPLICATION = 'songs.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-up.uses_netloc.append("postgres")
-url = up.urlparse(
-    os.environ["postgres://isnntsdr:j49ennnJb1xqPykMk_SG0fiurFOaC7q-@raja.db.elephantsql.com:5432/isnntsdr"])
-# url = up.urlparse(os.environ[env.str("URL")])
+# up.uses_netloc.append("postgres")
+# url = up.urlparse(
+#     os.environ["postgres://isnntsdr:j49ennnJb1xqPykMk_SG0fiurFOaC7q-@raja.db.elephantsql.com:5432/isnntsdr"])
+# # url = up.urlparse(os.environ[env.str("URL")])
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': url.path[1:],
-        'USER': url.username,
-        'PASSWORD': url.password,
-        'HOST': url.hostname,
-        'PORT': url.port,
+        'NAME': 'isnntsdr',
+        'USER': 'isnntsdr',
+        'PASSWORD': 'j49ennnJb1xqPykMk_SG0fiurFOaC7q-',
+        'HOST': 'raja.db.elephantsql.com',
+        'PORT': 5432,
     }
 }
-
-conn = psycopg2.connect(DATABASES)
 
 
 # DATABASES={
